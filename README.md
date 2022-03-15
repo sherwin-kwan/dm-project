@@ -1,24 +1,27 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![building?](https://github.com/sherwin-kwan/dm-project/actions/workflows/test.yml/badge.svg)
 
-Things you may want to cover:
+This is a blog webapp for practicing good TDD and CI habits.
 
-* Ruby version
+Runs on:
+* Ruby 3.1
+* Rails 7.0
+* PostgreSQL 
 
-* System dependencies
+To run it locally, clone the repo and then make sure all dependencies are installed: (this assumes you already have the right Ruby version)
+```
+gem install bundler
+bundle install
+rails db:setup db:migrate
+```
 
-* Configuration
+Then, `rails s` starts the server, or `bundle exec rspec` runs the test suite.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+If database creation fails for whatever reason, you may need to enter the `psql` console and manually create the needed databases:
+```
+psql
+> CREATE DATABASE dm_project_test;
+> CREATE DATABASE dm_project_development;
+> exit
+```
