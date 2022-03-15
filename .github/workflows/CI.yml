@@ -10,7 +10,7 @@ name: Test
 on: push
 
 jobs:
-  deploy:
+  test:
 
     runs-on: ubuntu-latest # Currently deployed to Heroku which runs Ubuntu 20.x
     services:
@@ -21,6 +21,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
