@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest # Currently deployed to Heroku which runs Ubuntu 20.x
     services:
       postgres:
-        image: postgres1234567789
+        image: postgres
         ports:
           - 5432:5432
         env:
@@ -43,7 +43,7 @@ jobs:
     #   uses: yarn && yarn run build && yarn run test
     - name: Run tests
       env:
-        PGHOST: postgres
+        PGHOST: localhost
         PGUSER: postgres
         PGPORT: ${{ job.services.postgres.ports[5432] }}
         RAILS_ENV: test
