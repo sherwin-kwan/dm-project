@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest # Currently deployed to Heroku which runs Ubuntu 20.x
     services:
       postgres:
-        image: postgres
+        image: postgres1234567789
         ports:
           - 5432:5432
         env:
