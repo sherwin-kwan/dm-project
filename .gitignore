@@ -30,7 +30,8 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-# codecov
+# codecov/simplecov
 /coverage
+codecov
 
 .DS_Store
