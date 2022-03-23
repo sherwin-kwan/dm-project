@@ -1,0 +1,52 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will download a prebuilt Ruby version, install dependencies and run tests with Rake
+# For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
+
+name: Test
+
+on: push
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest # Currently deployed to Heroku which runs Ubuntu 20.x
+    services:
+      postgres:
+        image: postgres
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.1.1'
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - name: Install dependencies
+      run: bundle install
+    # NOTE: Uncomment the following lines once the repo has a package.json and JS dependencies to install
+    # - name: Install JavaScript
+    #   uses: actions/setup-node@v1
+    #   with:
+    #     node-version: '14.x'
+    # - name: Install JavaScript dependencies
+    #   uses: yarn && yarn run build && yarn run test
+    - name: Run tests
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        PGPASSWORD: postgres
+        PGPORT: ${{ job.services.postgres.ports[5432] }}
+        RAILS_ENV: test
+      run: bin/rails db:create db:schema:load db:migrate && bundle exec rspec
+  
+  

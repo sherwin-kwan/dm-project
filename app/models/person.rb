@@ -1,6 +1,7 @@
 class Person < ApplicationRecord
 
   def speak
-    "Hello, world!"
+    puts "Hello world!"
+    "something"
   end
 end
