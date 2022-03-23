@@ -48,5 +48,7 @@ jobs:
         PGPORT: ${{ job.services.postgres.ports[5432] }}
         RAILS_ENV: test
       run: bin/rails db:create db:schema:load db:migrate && bundle exec rspec
+    - name: CodeCov upload
+      run: curl -Os https://uploader.codecov.io/latest/macos/codecov && chmod +x codecov && ./codecov
   
   
