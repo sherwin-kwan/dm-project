@@ -30,9 +30,10 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-# codecov/simplecov
+# Code quality tools
 /coverage
 codecov
+cc-test-reporter
 
 # environment files
 .env

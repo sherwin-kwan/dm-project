@@ -1,6 +1,7 @@
 # README
 
 ![building?](https://github.com/sherwin-kwan/dm-project/actions/workflows/test.yml/badge.svg)
+[![Maintainability from Code Climate](https://api.codeclimate.com/v1/badges/9988f5a29107c3da442c/maintainability)](https://codeclimate.com/github/sherwin-kwan/dm-project/maintainability)
 [![codecov](https://codecov.io/gh/sherwin-kwan/dm-project/branch/master/graph/badge.svg?token=3FIKBG7MY8)](https://codecov.io/gh/sherwin-kwan/dm-project)
 
 This is a blog webapp for practicing good TDD and CI habits.
