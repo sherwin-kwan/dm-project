@@ -34,4 +34,8 @@
 /coverage
 codecov
 
+# environment files
+.env
+.env.*
+
 .DS_Store
