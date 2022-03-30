@@ -1,0 +1,9 @@
+<h1>Create your article</h1>
+
+<%= form_with model: @article do |form| %>
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+  <%= form.label :body %>
+  <%= form.text_area :body %>
+  <%= form.submit "Search" %>
+<% end %>
