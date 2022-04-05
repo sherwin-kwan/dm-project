@@ -1,0 +1,41 @@
+body {
+  max-width: 1200px;
+  margin: auto;
+  padding: 50px;
+  background-color: white;
+}
+
+// Homepage 
+div.article {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0.25rem;
+  th {
+    border: 1px solid black;
+    padding: 0.5rem;
+    background-color: #ca8;
+  }
+  td {
+    border: 1px solid black;
+    padding: 0.25rem;
+  }
+
+  tr:nth-child(odd) {
+    background-color: #4ff;
+  }
+
+  tr:nth-child(even) {
+    background-color: #cff;
+  }
+  tr.total {
+    background-color: #ff8;
+  }
+}
