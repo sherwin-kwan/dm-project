@@ -1,0 +1,21 @@
+<h1>Extra! Extra! Read all about it!</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Last Updated</th>
+    <th>View Live</th>
+  </tr>
+  <% @articles.each do |a| %>
+    <tr>
+      <td><%= a.id %></td>
+      <td><%= link_to(a.title, edit_admin_article_path(a)) %></td>
+      <td><%= a.updated_at.to_date %></td>
+      <td><%= link_to("View Live", article_path(a)) %></td>
+    </tr>
+  <% end %>
+  
+</table>
+
+<%= link_to "Create New Article!", new_admin_article_path %>
