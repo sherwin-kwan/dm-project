@@ -1,5 +1,15 @@
 <h1>Edit your article</h1>
 
-<%= render "edit_article" %>
+<%= form_with model: @article, url: admin_article_path do |form| %>
+  <div class="form-fields">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+  <div class="form-fields">
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+  </div>
+  <%= form.submit "Save" %>
+<% end %>
 
 <%= link_to "See All Articles", admin_articles_path %>
