@@ -1,5 +1,13 @@
 <h1>Create your article</h1>
-
-<%= render "edit_article" %>
-
+<%= form_with url: new_admin_article_path do |form| %>
+  <div class="form-fields">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+  <div class="form-fields">
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+  </div>
+  <%= form.submit "Save" %>
+<% end %>
 <%= link_to "Back to Menu", admin_articles_path %>

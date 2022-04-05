@@ -34,7 +34,7 @@ class Admin::ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
     @article.update(permitted_params)
-    redirect_to 
+    redirect_to admin_articles_path
   end
 
   private
