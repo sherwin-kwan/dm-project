@@ -1,5 +1,5 @@
 <h1>Create your article</h1>
-<%= form_with url: new_admin_article_path do |form| %>
+<%= form_with model: @article, url: admin_articles_path do |form| %>
   <div class="form-fields">
     <%= form.label :title %>
     <%= form.text_field :title %>

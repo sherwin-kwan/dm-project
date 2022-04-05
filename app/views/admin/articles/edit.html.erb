@@ -1,6 +1,6 @@
 <h1>Edit your article</h1>
 
-<%= form_with model: @article, url: admin_article_path do |form| %>
+<%= form_with model: @article, url: admin_article_path(@article) do |form| %>
   <div class="form-fields">
     <%= form.label :title %>
     <%= form.text_field :title %>
