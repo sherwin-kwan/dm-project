@@ -63,4 +63,5 @@ group :test do
   gem "rspec-rails"
   gem 'simplecov', require: false
   gem 'simplecov-cobertura'
+  gem 'rails-controller-testing'
 end
