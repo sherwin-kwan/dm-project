@@ -8,7 +8,7 @@ class Admin::ArticlesController < ApplicationController
     if @article.save
       redirect_to admin_articles_path
     else
-      puts "Something went wrong"
+      render :new, status: 400
       # TODO: Add a flash to handle errors
     end
   end
@@ -18,8 +18,8 @@ class Admin::ArticlesController < ApplicationController
       redirect_to admin_articles_path
       # TODO: Notify user that deleted successfully
     else
-      puts "Something went wrong"
-      # TODO: Add a flash
+      flash[:errors] = "Unable to delete, #{@article.errors&.full_messages}"
+      redirect_to admin_articles_path
     end
   end
 
@@ -33,8 +33,11 @@ class Admin::ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id])
-    @article.update(permitted_params)
-    redirect_to admin_articles_path
+    if @article.update(permitted_params)
+      redirect_to admin_articles_path
+    else
+      render :edit, status: 400
+    end
   end
 
   private
