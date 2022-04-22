@@ -1,11 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "Admin Articles cotroller", type: :request do
-
-  before(:each) do
-    a = Article.create({title: "Sample Title", body: "This is a Body"})
-    @id = a.id
-  end
+  let(:a) {
+    FactoryBot.create(:article)
+  }
 
   describe "index" do
     it "renders the index template with the right status code" do
@@ -26,7 +24,7 @@ RSpec.describe "Admin Articles cotroller", type: :request do
   describe "create" do
     it "should fail if you try to create articles without a title" do
       post "/admin/articles", params: {article: {title: ""}}
-      expect(Article.count).to eq(1)
+      expect(Article.count).to eq(0)
       expect(response.status).to eq(400)
     end
 
@@ -44,7 +42,7 @@ RSpec.describe "Admin Articles cotroller", type: :request do
 
   describe "edit" do
     it "renders the edit template with the right status code" do
-      get "/admin/articles/#{@id}/edit"
+      get "/admin/articles/#{a.id}/edit"
       expect(response).to render_template("edit")
       expect(response.status).to eq(200)
     end
@@ -52,26 +50,26 @@ RSpec.describe "Admin Articles cotroller", type: :request do
 
   describe "update" do
     it "should fail if you try to update articles to drop the title" do
-      put "/admin/articles/#{@id}", params: {id: @id, article: {title: ""}}
+      put "/admin/articles/#{a.id}", params: {id: a.id, article: {title: ""}}
       expect(response.status).to eq(400)
     end
 
     it "should show a relevant error message" do 
-      put "/admin/articles/#{@id}", params: {id: @id, article: {title: ""}}
+      put "/admin/articles/#{a.id}", params: {id: a.id, article: {title: ""}}
       expect(flash[:errors]).to include("could not be updated")
     end
 
     it "should update the article if everything's filled out" do
-      put "/admin/articles/#{@id}", params: {id: @id, article: {title: "You Didn't Expect This, Did You?", body: "My Body"}}
+      put "/admin/articles/#{a.id}", params: {id: a.id, article: {title: "You Didn't Expect This, Did You?", body: "My Body"}}
       expect(response).to redirect_to(admin_articles_path)
-      expect(Article.find(@id).title).to eq("You Didn't Expect This, Did You?")
+      expect(Article.find(a.id).title).to eq("You Didn't Expect This, Did You?")
     end
   end
 
   describe "destroy" do
     it "should destroy an article" do
-      delete "/admin/articles/#{@id}", params: {id: @id}
-      expect{ Article.find(@id) }.to raise_error(ActiveRecord::RecordNotFound)
+      delete "/admin/articles/#{a.id}", params: {id: a.id}
+      expect{ Article.find(a.id) }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end

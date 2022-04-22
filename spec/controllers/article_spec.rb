@@ -15,18 +15,17 @@ RSpec.describe ArticlesController do
   end
 
   describe "GET show" do
-    before(:each) do
-      a = Article.create({title: "My Title", body: "This is a Body"})
-      @id = a.id
-    end
+    let(:a) {
+      FactoryBot.create(:article)
+    }
 
     it "renders the show template" do
-      get :show, params: {id: @id}
+      get :show, params: {id: a.id}
       expect(response).to render_template("show")
     end
 
     it "produces an OK status code" do
-      get :show, params: {id: @id}
+      get :show, params: {id: a.id}
       expect(response.status).to eq(200)
     end
   end
