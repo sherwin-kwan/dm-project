@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Admin Articles cotroller", type: :request do
+RSpec.describe "Admin Articles controller", type: :request do
   let(:a) {
     FactoryBot.create(:article)
   }
