@@ -58,9 +58,11 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
+  gem "factory_bot_rails"
   gem "selenium-webdriver"
   gem "webdrivers"
   gem "rspec-rails"
   gem 'simplecov', require: false
   gem 'simplecov-cobertura'
+  gem 'rails-controller-testing'
 end
