@@ -4,6 +4,10 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
+    if params[:id].to_i > 0
+      @article = Article.find(params[:id])
+    else
+      @article = Article.where(slug: params[:id]).first
+    end
   end
 end

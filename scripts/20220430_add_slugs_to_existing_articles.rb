@@ -1,0 +1,1 @@
+Article.all.each{|a| a.set_slug && a.save }
