@@ -19,4 +19,16 @@ class Article < ApplicationRecord
     end
     self.slug = current_slug
   end
+
+  class << self
+    # Where "arg" could be either a string slug or an integer ID
+    def find_by_slug_or_id(arg)
+      if arg.to_i > 0
+        @article = Article.find(arg)
+      else
+        @article = Article.where(slug: arg).first
+      end
+    end
+
+  end
 end
