@@ -6,7 +6,7 @@ class Article < ApplicationRecord
   before_save :set_slug
 
   def to_param
-    self.slug
+    self.slug || self.id
   end
 
   def set_slug
