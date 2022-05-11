@@ -48,7 +48,7 @@ RSpec.describe "Admin Articles controller", type: :request do
     end
 
     it "renders the edit template if slug is passed instead of ID" do
-      get "/admin/articles/#{a.slug}/edit"
+      get "/admin/articles/#{a.id}-#{a.slug}/edit"
       expect(response).to render_template("edit")
       expect(response.status).to eq(200)
     end
@@ -72,7 +72,7 @@ RSpec.describe "Admin Articles controller", type: :request do
     end
 
     it "should update the article if everything's filled out, and slug is passed" do
-      put "/admin/articles/#{a.slug}", params: {id: a.id, article: {title: "You Didn't Expect This, Did You?", body: "My Body"}}
+      put "/admin/articles/#{a.id}-#{a.slug}", params: {id: a.id, article: {title: "You Didn't Expect This, Did You?", body: "My Body"}}
       expect(response).to redirect_to(admin_articles_path)
       expect(Article.find(a.id).title).to eq("You Didn't Expect This, Did You?")
     end
@@ -85,7 +85,7 @@ RSpec.describe "Admin Articles controller", type: :request do
     end
 
     it "should be able to destroy by slug" do
-      delete "/admin/articles/#{a.slug}"
+      delete "/admin/articles/#{a.id}-#{a.slug}"
       expect{ Article.find(a.id) }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end

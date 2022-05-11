@@ -24,11 +24,11 @@ RSpec.describe Article, type: :model do
 
   it "should save a slug equal to the title parameterized" do
     c.save
-    expect(c.slug).to eq("this_is_a_title")
+    expect(c.slug).to eq("this-is-a-title")
   end
 
   it "should set the default URL for an article to its pretty URL (slug)" do
     c.save
-    expect(article_path(c)).to eq("/articles/this_is_a_title")
+    expect(article_path(c)).to eq("/articles/#{c.id}-this-is-a-title")
   end
 end

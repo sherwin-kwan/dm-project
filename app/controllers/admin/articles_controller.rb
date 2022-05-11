@@ -15,7 +15,7 @@ class Admin::ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find_by_slug_or_id(params[:id])
+    @article = Article.find(params[:id].to_i)
     if @article.destroy
       redirect_to admin_articles_path
       # TODO: Notify user that deleted successfully
@@ -30,11 +30,11 @@ class Admin::ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find_by_slug_or_id(params[:id])
+    @article = Article.find(params[:id].to_i)
   end
 
   def update
-    @article = Article.find_by_slug_or_id(params[:id])
+    @article = Article.find(params[:id].to_i)
     if @article.update(permitted_params)
       redirect_to admin_articles_path
     else

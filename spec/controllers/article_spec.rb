@@ -20,18 +20,33 @@ RSpec.describe "Articles Controller", :type => :request do
     end
 
     it "renders the show template" do
-      get "/articles/#{@a.id}"
+      get "/articles/#{@a.id}-#{@a.slug}"
       expect(response).to render_template("show")
     end
 
     it "produces an OK status code" do
-      get "/articles/#{@a.id}"
+      get "/articles/#{@a.id}-#{@a.slug}"
       expect(response.status).to eq(200)
     end
 
     it "can access an article by title" do
-      get "/articles/sample_title"
+      get "/articles/#{@a.id}-sample-title"
       expect(response).to render_template("show")
+    end
+
+    it "URL changes after the title changes" do
+      @a.title = "New Title"
+      @a.save
+      get "/articles/#{@a.id}-new-title"
+      expect(response).to render_template("show")
+    end
+
+    it "the old URL still works, but redirects to the new URL" do
+      @a.title = "New Title"
+      @a.save
+      get "/articles/#{@a.id}-sample-title"
+      expect(response.status).to eq(302)
+      expect(response).to redirect_to("/articles/#{@a.id}-new-title")
     end
   end
 
