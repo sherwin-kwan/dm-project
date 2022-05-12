@@ -7,3 +7,15 @@
     <p><%= a.body.length > 200 ? a.body.first(200) + "..." : a.body.first(200) %>&nbsp;<%= link_to("Read More", article_path(a)) %></p>
   </div>
 <% end %>
+
+<p>Viewing page <%= @page + 1 %> of <%= @num_of_pages %></p>
+<div class="pagination">
+  <%= link_to("First", article_page_articles_path(0)) %>
+  <% if @page != 0 %>
+    <%= link_to("Prev", article_page_articles_path(@page - 1)) %>
+  <% end %>
+  <% if @page != @num_of_pages - 1 %>
+    <%= link_to("Next", article_page_articles_path(@page + 1)) %>
+  <% end %>
+  <%= link_to("Last", article_page_articles_path(@num_of_pages - 1)) %>
+</div>
