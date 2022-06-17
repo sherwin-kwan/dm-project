@@ -1,7 +1,7 @@
-
 import { Turbo } from '@hotwired/turbo-rails';
 
 window.addEventListener('turbo:load', async (event) => {
+
   const limitSelector = document.querySelector("#limit-selector")
   if (limitSelector) {
     limitSelector.addEventListener('change', e => {

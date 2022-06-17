@@ -3,9 +3,7 @@ require "rails_helper"
 class PaginationTest < ActionDispatch::IntegrationTest
   describe "pagination", type: "feature", js: true do
     before(:each) do
-      i = 0
-      20.times do
-        i += 1
+      1.upto(20).each do |i|
         FactoryBot.create(:article, title: "This is Article #{i}")
       end
     end
