@@ -13,9 +13,10 @@ window.addEventListener('turbo:load', async (event) => {
   const pageSelector = document.querySelector("#page-selector")
   if (pageSelector) {
     pageSelector.addEventListener('change', e => {
-      const url = new URL(window.location.href)
-      url.searchParams.set('page', Number(e.target.value) - 1)
-      Turbo.visit(url.href)
+      console.log("Disabled")
+      // const url = new URL(window.location.href)
+      // url.searchParams.set('page', Number(e.target.value) - 1)
+      // Turbo.visit(url.href)
     })
   }
 });

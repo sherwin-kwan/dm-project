@@ -1,6 +1,6 @@
 <div class="dropdowns">
   Viewing page 
-  <select id="page-selector">
+  <select id="page-selector" data-action="change->page#getpage" data-turbo-frame="testing">
     <% (0...@num_of_pages).each do |num| %>
       <option <%= "selected" if @page == num %>><%= num + 1 %></option>
     <% end %>
