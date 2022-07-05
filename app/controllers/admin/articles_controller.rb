@@ -1,6 +1,9 @@
 class Admin::ArticlesController < ApplicationController
+  include Paginatable
+  
   def index
-    @articles = Article.all.order("created_at DESC")
+    set_up_pagination(Article)
+    @articles = @articles.order("created_at DESC")
   end
 
   def create

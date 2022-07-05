@@ -1,12 +1,9 @@
 class ArticlesController < ApplicationController
+  include Paginatable
+
   def index
-    @page = params[:page].to_i
-    @limit = params[:limit]&.to_i || 5
-    @num_of_pages = (Article.count - 1) / @limit + 1
-    if (@page < 0 || @page >= @num_of_pages) && @num_of_pages > 0
-      render :error, status: 404
-    end
-    @articles = Article.all.order("created_at DESC").offset(@limit * @page).limit(@limit)
+    set_up_pagination(Article)
+    @articles = @articles.order("created_at DESC")
   end
 
   def show
