@@ -1,3 +1,5 @@
+require "pry"
+
 class Admin::ArticlesController < ApplicationController
   include Paginatable
   
@@ -38,6 +40,8 @@ class Admin::ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id].to_i)
+    params[:article][:body] = sanitize(params[:article][:body])
+    binding.pry
     if @article.update(permitted_params)
       redirect_to admin_articles_path
     else
@@ -49,6 +53,6 @@ class Admin::ArticlesController < ApplicationController
   private
 
   def permitted_params
-    params.require(:article).permit([:title, :body])
+    params.require(:article).permit([:title, :body]).tap{|p| p[:body] = helpers.sanitize(p[:body])}
   end
 end

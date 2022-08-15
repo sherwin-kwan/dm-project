@@ -1,7 +1,7 @@
 <h1><%= @article.title %></h1>
 
 <p>
-  <%= @article.body %>
+  <%= raw @article.body # sanitize here?? %>
 </p>
 
 <%= link_to "See All Articles", root_path %>
