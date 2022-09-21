@@ -14,7 +14,6 @@ class Admin::ArticlesController < ApplicationController
     else
       flash[:errors] = "Article could not be created, #{@article.errors&.full_messages}"
       render :new, status: 400
-      # TODO: Add a flash to handle errors
     end
   end
 
@@ -39,7 +38,6 @@ class Admin::ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id].to_i)
-    params[:article][:body] = sanitize(params[:article][:body])
     if @article.update(permitted_params)
       redirect_to admin_articles_path
     else
@@ -51,6 +49,6 @@ class Admin::ArticlesController < ApplicationController
   private
 
   def permitted_params
-    params.require(:article).permit([:title, :body]).tap{|p| p[:body] = helpers.sanitize(p[:body])}
+    params.require(:article).permit([:title, :body]).tap{|p| p[:body] = sanitize(p[:body])}
   end
 end
