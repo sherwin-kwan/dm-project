@@ -1,27 +1,21 @@
 <h1>Create your account</h1>
 
 <%= form_with model: @user, url: users_path(@user) do |form| %>
-  <div class="form-fields">
+  <div class="form-fields narrow">
     <%= form.label :email %>
     <%= form.text_field :email %>
   </div>
-  <div class="form-fields">
+  <div class="form-fields narrow">
     <%= form.label :password %>
-    <%= form.text_area :password %>
+    <%= form.text_field :password %>
   </div>
-  <div class="form-fields">
+  <div class="form-fields narrow">
     <%= form.label :password_confirmation %>
-    <%= form.text_area :password_confirmation %>
+    <%= form.text_field :password_confirmation %>
   </div>
   <%= form.submit "Save" %>
 <% end %>
 
-<ul>
-<% if flash[:errors] %>
-  <% flash[:errors].uniq.each do |e| %>
-    <li><%= e %></li>
-  <% end %>
-<% end %>
-</ul>
+<%= render "shared/errors", model: @user %>
 
 <%= link_to "Back to Home", root_path %>

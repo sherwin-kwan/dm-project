@@ -49,9 +49,6 @@ RSpec.describe "Admin Articles controller", type: :request do
       get "/articles/#{a.id.to_s}"
       expect(response.body).to_not include("<script>")
     end
-    xit "fails" do
-      expect(1+1).to eq(3)
-    end
   end
 
   describe "edit" do

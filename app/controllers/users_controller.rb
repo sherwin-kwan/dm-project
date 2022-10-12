@@ -5,14 +5,13 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to users_path
     else
-      flash[:errors] = @user.errors.full_messages
       redirect_to new_user_path
       # display error to user
     end
   end
 
   def index
-    @count = User.count
+    @users = User.all
   end
 
   def new

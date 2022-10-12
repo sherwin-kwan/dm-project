@@ -7,4 +7,10 @@ form {
     display: grid;
     grid-template-columns: 1fr 3fr;
   }
+
+  &.narrow {
+    width: 50%;
+    margin: auto;
+  }
+
 }

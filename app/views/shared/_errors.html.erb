@@ -1,0 +1,7 @@
+<ul>
+  <% if model.errors %>
+    <% model.errors.full_messages.uniq.each do |e| %>
+      <li><%= e %></li>
+    <% end %>
+  <% end %>
+</ul>
