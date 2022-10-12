@@ -18,5 +18,6 @@ window.addEventListener('turbo:load', async (event) => {
       Turbo.visit(url.href)
     })
   }
+
 });
 

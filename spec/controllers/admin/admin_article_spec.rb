@@ -38,6 +38,17 @@ RSpec.describe "Admin Articles controller", type: :request do
       expect(response).to redirect_to(admin_articles_path)
       expect(Article.find_by(title: "New Title")).to be_truthy
     end
+
+    it "should sanitize contents before saving to db" do
+      post "/admin/articles", params: {article: {title: "Some Title", body: "Muhahaha <script>alert('Malicious code')</script>"}}
+      expect(Article.find_by(title: "Some Title").body).to_not include("<script>")
+    end
+    
+    it "even if script tags get into the db, it still shouldn't render onto the page" do
+      a = Article.create(title: "Some Title", body: "Muhahaha <script>alert('Malicious code')</script>")
+      get "/articles/#{a.id.to_s}"
+      expect(response.body).to_not include("<script>")
+    end
   end
 
   describe "edit" do

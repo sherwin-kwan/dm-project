@@ -1,6 +1,7 @@
 class Admin::ArticlesController < ApplicationController
   include Paginatable
-  
+  include ActionView::Helpers::SanitizeHelper
+
   def index
     set_up_pagination(Article)
     @articles = @articles.order("created_at DESC")
@@ -13,7 +14,6 @@ class Admin::ArticlesController < ApplicationController
     else
       flash[:errors] = "Article could not be created, #{@article.errors&.full_messages}"
       render :new, status: 400
-      # TODO: Add a flash to handle errors
     end
   end
 
@@ -49,6 +49,6 @@ class Admin::ArticlesController < ApplicationController
   private
 
   def permitted_params
-    params.require(:article).permit([:title, :body])
+    params.require(:article).permit([:title, :body]).tap{|p| p[:body] = sanitize(p[:body])}
   end
 end
