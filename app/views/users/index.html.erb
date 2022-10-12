@@ -1,3 +1,9 @@
 <h1>Dummy Page</h1>
 
-<p>There are now <%= @count %> users.</p>
+<p>There are now <%= @users.count %> users.</p>
+
+<ul>
+  <% @users.each do |user| %>
+    <li><%= user.email %></li>
+  <% end %>
+</ul>

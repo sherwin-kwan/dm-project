@@ -1,0 +1,16 @@
+<h2>LOG IN PAGE</h2>
+
+<%= form_with url: login_path, html: {class: "narrow"} do |form| %>
+  <div class="form-fields">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+  <div class="form-fields">
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+  <%= form.submit "Save" %>
+<% end %>
+<% if alert %>
+  <%= alert %>
+<% end %>
