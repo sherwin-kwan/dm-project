@@ -1,4 +1,4 @@
-class Admin::ArticlesController < ApplicationController
+class Admin::ArticlesController < AdminController
   include Paginatable
   include ActionView::Helpers::SanitizeHelper
 

@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path, notice: "You have successfully logged in"
     else
-      flash[:alert] = "Username and password do not match. Sorry Charlotte, you don't get to know which one it is."
+      flash[:alert] = "Username and password do not match."
       render :new
     end
   end
