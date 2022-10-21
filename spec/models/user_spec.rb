@@ -6,6 +6,12 @@ RSpec.describe User, type: :model do
     expect(User.count).to eq(1)
   end
 
+  it "won't let you create a duplicate email" do
+    u = User.create(email: "aabc@def.com", password: "abcdefgh", password_confirmation: "abcdefgh")
+    u2 = User.new(email: "aabc@def.com", password: "hijklmno", password_confirmation: "hijklmno")
+    expect(u2).to be_invalid
+  end
+
   it "won't create user if password doesn't match confirmation" do
     u = User.create(email: "aabc@def.com", password: "abcdefgh", password_confirmation: "abcdefhg")
     expect(u.valid?).to be(false)
