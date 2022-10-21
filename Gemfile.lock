@@ -334,7 +334,7 @@ DEPENDENCIES
   factory_bot_rails
   importmap-rails
   jbuilder
-  pg (~> 1.1)
+  pg
   pry-doc
   pry-rails
   puma (~> 5.0)
