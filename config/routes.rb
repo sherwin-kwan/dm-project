@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :articles
   end
+  resources :users, only: %i(index new create)
+  scope :users do
+    get "login", :to => 'sessions#new'
+    post "login", :to => 'sessions#create'
+    post "logout", :to => 'sessions#destroy'
+  end
 
   get '*path', :to => 'articles#error', :as => :error
 end
