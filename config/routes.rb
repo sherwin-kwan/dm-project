@@ -6,8 +6,11 @@ Rails.application.routes.draw do
   resources :articles, only: %i(index show)
   namespace :admin do
     resources :articles
+    resources :users, only: :index
+    resources :people, only: %i(edit update)
   end
-  resources :users, only: %i(index new create)
+  resources :users, only: %i(new create)
+  resources :people, only: :show
   scope :users do
     get "login", :to => 'sessions#new'
     post "login", :to => 'sessions#create'
