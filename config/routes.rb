@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :articles, only: %i(index show)
   namespace :admin do
     resources :articles
-    resources :users, only: :index
+    resources :users, only: :index 
+    get "users/:id/dashboard", :to => 'users#dashboard'
     resources :people, only: %i(edit update)
   end
   resources :users, only: %i(new create)
@@ -17,5 +18,5 @@ Rails.application.routes.draw do
     delete "logout", :to => 'sessions#destroy'
   end
 
-  get '*path', :to => 'articles#error', :as => :error
+  get '*path', :to => 'application#error', :as => :error
 end
