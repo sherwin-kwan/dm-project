@@ -14,4 +14,23 @@ class ApplicationController < ActionController::Base
   def logged_in?
     current_user.present?
   end
+
+  # On a controller that follows Rails naming conventions ("UsersController"), this will return the corresponding model ("User")
+  def my_model
+    Object.const_get(self.class.to_s.gsub("Controller", "").gsub("Admin::", "").singularize)
+  end
+
+  def error
+    # To be continued. Right now it just renders the error view.
+  end
+  
+  def get_object
+    id = id.to_i
+    obj = my_model.find_by(id: params[:id])
+    if obj
+      return obj
+    else
+      render :error, status: 404 and return
+    end
+  end
 end

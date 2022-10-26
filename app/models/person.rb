@@ -1,4 +1,5 @@
 class Person < ApplicationRecord
+  belongs_to :user
 
   def speak
     puts "Hello world!"
