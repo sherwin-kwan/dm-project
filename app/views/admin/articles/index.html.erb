@@ -22,3 +22,6 @@
 
 <%= link_to "Create New Article!", new_admin_article_path %>
 
+<%= link_to "Edit My Profile", edit_admin_person_path(current_user.person.id) %>
+<%= link_to "View My Profile", person_path(current_user.person.id) %>
+

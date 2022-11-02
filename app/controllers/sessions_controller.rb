@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect_to root_path, notice: "You have successfully logged in"
+      redirect_to admin_dashboard_path(@user.id), notice: "You have successfully logged in"
     else
       flash[:alert] = "Username and password do not match."
       render :new

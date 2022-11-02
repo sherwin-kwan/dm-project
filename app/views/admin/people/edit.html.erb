@@ -1,0 +1,61 @@
+<h2>Edit Your Profile, <%= @person.private_name %></h2>
+
+<%= form_with model: @person, url: admin_person_path do |form| %>
+  <div class="form-fields">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="form-fields">
+    <%= form.label :display_name %>
+    <%= form.text_field :display_name %>
+  </div>
+  <div class="form-fields">
+    <%= form.label :given_name %>
+    <%= form.text_field :given_name %>
+  </div>
+  <div class="form-fields">
+    <%= form.label :slogan %>
+    <%= form.text_field :slogan %>
+  </div>
+  <div class="form-fields">
+    <%= form.label :gender %>
+    <%= form.text_field :gender %>
+  </div>
+  <div class="form-fields">
+    <%= form.label :date_of_birth %>
+    <%= form.date_field :date_of_birth%>
+  </div>
+  <div class="form-fields">
+    <%= form.label :fb_name %>
+    <%= form.text_field :fb_name %>
+  </div>
+  <div class="form-fields">
+    <%= form.label :ig_name %>
+    <%= form.text_field :ig_name %>
+  </div>
+  <div class="form-fields">
+    <%= form.label :tw_name %>
+    <%= form.text_field :tw_name %>
+  </div>
+  <div class="form-fields">
+    <%= form.label :li_name %>
+    <%= form.text_field :li_name %>
+  </div>
+  <div class="form-fields">
+    <%= form.label :bio %>
+    <%= form.text_area :bio %>
+  </div>
+  <div class="form-fields">
+    <%= form.label :country %>
+    <%= form.text_field :country %>
+  </div>
+  <div class="form-fields">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+  <%= form.submit "Save" %>
+<% end %>
+
+<% if flash[:errors].present? %>
+  <p><%= flash[:errors] %></p>
+<% end %>
