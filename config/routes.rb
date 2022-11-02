@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :articles
     resources :users, only: :index 
-    get "users/:id/dashboard", :to => 'users#dashboard'
+    get "users/:id/dashboard", :to => 'users#dashboard', :as => :dashboard
     resources :people, only: %i(edit update)
   end
   resources :users, only: %i(new create)

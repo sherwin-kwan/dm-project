@@ -1,0 +1,28 @@
+<h1><%= @person.public_name %>'s profile</h1>
+
+<% if @person.has_social? %>
+  <div>Contact Me On Social Media: 
+    <div style="display: flex; flex-direction: row; align-items: center; justify-content: flex-start">
+      <% if @person.fb_name.present? %>
+        <a href="https://www.facebook.com/<%= @person.fb_name %>">
+          <%= image_tag "facebook.jpeg", height: 50, width: 50 %>
+        </a>
+      <% end %>
+      <% if @person.tw_name.present? %>
+        <a href="https://www.twitter.com/<%= @person.tw_name %>">
+          <%= image_tag "twitter.png", height: 50, width: 50 %>
+        </a>
+      <% end %>
+      <% if @person.ig_name.present? %>
+        <a href="https://www.instagram.com/<%= @person.ig_name %>">
+          <%= image_tag "instagram.png", height: 50, width: 50 %>
+        </a>
+      <% end %>
+      <% if @person.li_name.present? %>
+        <a href="https://www.linkedin.com/in/<%= @person.li_name %>">
+          <%= image_tag "linkedin.png", height: 50, width: 50 %>
+        </a>
+      <% end %>
+    </div>
+  </div>
+<% end %>

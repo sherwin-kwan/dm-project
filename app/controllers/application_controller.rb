@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   
   def get_object
     id = id.to_i
-    obj = my_model.find_by(id: params[:id])
+    obj = my_model.find_by(id: params[:id].to_i)
     if obj
       return obj
     else

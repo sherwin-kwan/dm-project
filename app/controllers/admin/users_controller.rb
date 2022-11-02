@@ -5,6 +5,7 @@ module Admin
     end
 
     def dashboard
+      render :error unless current_user.id == params[:id].to_i
       @user = get_object
     end
   end
