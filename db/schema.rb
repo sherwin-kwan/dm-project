@@ -20,6 +20,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_26_044924) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.bigint "author_id"
+    t.index ["author_id"], name: "index_articles_on_author_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -49,5 +51,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_26_044924) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "articles", "people", column: "author_id"
   add_foreign_key "people", "users"
 end

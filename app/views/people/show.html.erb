@@ -1,5 +1,39 @@
 <h1><%= @person.public_name %>'s profile</h1>
 
+<div class="public-profile">
+  <div class="left">
+    <% if @person.slogan.present? %>
+      <div class="slogan">
+        <div class="preamble">
+          Words to live by: 
+        </div>
+        <%= @person.slogan %>
+      </div>
+    <% end %>
+
+    <div class="photo">
+      FUTURE HOME OF PHOTO
+    </div>
+  </div>
+  <div class="right">
+
+    <div class="bio">
+      <em>About Me: </em><br><br>
+      <%= @person.bio %>
+    </div>
+    <div class="location">
+      Location: <%= @person.city %>, <%= @person.country %>
+    </div>
+    <div class="gender">
+      Gender: <%= @person.gender %>
+    </div>
+    <div class="birthday">
+      Birthday: <%= @person.date_of_birth %>
+    </div>
+    Everyone else goes here other than slogan and bio.
+  </div>
+</div>
+
 <% if @person.has_social? %>
   <div>Contact Me On Social Media: 
     <div style="display: flex; flex-direction: row; align-items: center; justify-content: flex-start">

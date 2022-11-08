@@ -1,4 +1,5 @@
 <h1><%= @article.title %></h1>
+<h5>Written by <%= link_to @article.author.public_name, person_path(@article.author_id) %></h5>
 
 <p>
   <%= sanitize @article.body %>
