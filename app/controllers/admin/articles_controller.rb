@@ -9,6 +9,7 @@ class Admin::ArticlesController < AdminController
 
   def create
     @article = Article.new(permitted_params)
+    @article.author = current_user.person
     if @article.save
       redirect_to admin_articles_path
     else
