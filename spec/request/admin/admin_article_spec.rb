@@ -34,7 +34,8 @@ RSpec.describe "Admin Articles controller", type: :request do
   context "when signed in" do
 
     before(:all) do
-      @u = FactoryBot.create(:user)
+      @p = FactoryBot.create(:person)
+      @u = @p.user
       post "/users/login", params: {email: @u.email, password: @u.password}
     end
 
