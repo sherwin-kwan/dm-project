@@ -1,16 +1,26 @@
 module Admin
   class PeopleController < ApplicationController
     def edit
-      @person = get_object
+      if params[:id].to_i == current_user.person&.id
+        @person = get_object
+      else
+        flash[:errors] = "You are not authorized to view this page"
+        redirect_to admin_dashboard_path
+      end
     end
 
     def update
-      @person = get_object
-      if @person.update(permitted_params)
-        redirect_to admin_dashboard_path(@person.user.id)
+      if params[:id].to_i == current_user.person&.id
+        @person = get_object
+        if @person.update(permitted_params)
+          redirect_to admin_dashboard_path
+        else
+          flash[:errors] = "People could not be updated, #{@person.errors&.full_messages}"
+          render :edit, status: 400
+        end
       else
-        flash[:errors] = "People could not be updated, #{@person.errors&.full_messages}"
-        render :edit, status: 400
+        flash[:errors] = "You are not authorized to view this page"
+        redirect_to admin_dashboard_path
       end
     end
 
