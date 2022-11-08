@@ -1,0 +1,37 @@
+div.public-profile {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+
+  div {
+    padding: 5px;
+  }
+
+  .left {
+    grid-column-start: 1;
+  }
+
+  .right {
+    grid-column-start: 2;
+  }
+
+  .slogan {
+    font-style: italic;
+    font-size: 2rem;
+    .preamble {
+      font-size: 1rem;
+      
+    }
+  }
+  
+  .photo {
+    height: 200px;
+    width: 200px;
+    padding: 2rem;
+    border: 1px solid red;
+    background-color: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+  }
+}

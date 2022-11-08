@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
+  belongs_to :author, class_name: "Person"
 
   before_save :set_slug, :if => Proc.new{ self.title_changed? }
 
