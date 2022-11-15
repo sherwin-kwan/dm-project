@@ -20,6 +20,9 @@ class Admin::ArticlesController < AdminController
 
   def destroy
     @article = Article.find(params[:id].to_i)
+    unless article
+      render :error, status: 404 and return
+    end
     if @article.destroy
       redirect_to admin_articles_path
       # TODO: Notify user that deleted successfully
@@ -35,10 +38,16 @@ class Admin::ArticlesController < AdminController
 
   def edit
     @article = Article.find(params[:id].to_i)
+    unless article
+      render :error, status: 404 and return
+    end
   end
 
   def update
     @article = Article.find(params[:id].to_i)
+    unless article
+      render :error, status: 404 and return
+    end
     if @article.update(permitted_params)
       redirect_to admin_articles_path
     else

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :articles
     resources :users, only: :index 
-    resources :people, only: %i(edit update)
+    resource :people, only: %i(edit update) # note singular "resource" to prevent putting IDs in the route
     get "users/dashboard", :to => 'users#dashboard', :as => :dashboard
     get '*path', :to => 'users#dashboard'
   end
