@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find_by(id: params[:id].to_i)
-    unless article
+    unless @article
       render :error, status: 404 and return
     end
     # To handle "old" slugs after a title has changed, redirect any URL requested which contains a "-" to the latest canonical URL

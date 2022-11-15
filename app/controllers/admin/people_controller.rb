@@ -1,8 +1,8 @@
 module Admin
   class PeopleController < ApplicationController
     def edit
-      if params[:id].to_i == current_user.person&.id
-        @person = Person.find_by(id: params[:id].to_i)
+      if current_user
+        @person = Person.find_by(id: current_user.person&.id)
         unless @person
           render :error, status: 404 and return
         end
@@ -13,8 +13,8 @@ module Admin
     end
 
     def update
-      if params[:id].to_i == current_user.person&.id
-        @person = Person.find_by(id: params[:id].to_i)
+      if current_user
+        @person = Person.find_by(id: current_user.person&.id)
         unless @person
           render :error, status: 404 and return
         end

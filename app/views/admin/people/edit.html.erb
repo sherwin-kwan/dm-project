@@ -1,6 +1,6 @@
 <h2>Edit Your Profile, <%= @person.private_name %></h2>
 
-<%= form_with model: @person, url: admin_person_path do |form| %>
+<%= form_with model: @person, url: admin_people_path do |form| %>
   <div class="form-fields">
     <%= form.label :name %>
     <%= form.text_field :name %>

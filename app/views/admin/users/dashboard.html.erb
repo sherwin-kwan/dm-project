@@ -1,4 +1,4 @@
 <h2>Welcome, <%= @user.person.private_name %>! This is your dashboard!</h2>
 
 <%= link_to "See Your Profile!", person_path(@user.person.id) %>
-<%= link_to "Create or Edit Profile", edit_admin_person_path(@user.person.id) %>
+<%= link_to "Create or Edit Profile", edit_admin_people_path  %>

@@ -20,7 +20,7 @@ class Admin::ArticlesController < AdminController
 
   def destroy
     @article = Article.find(params[:id].to_i)
-    unless article
+    unless @article
       render :error, status: 404 and return
     end
     if @article.destroy
@@ -38,14 +38,14 @@ class Admin::ArticlesController < AdminController
 
   def edit
     @article = Article.find(params[:id].to_i)
-    unless article
+    unless @article
       render :error, status: 404 and return
     end
   end
 
   def update
     @article = Article.find(params[:id].to_i)
-    unless article
+    unless @article
       render :error, status: 404 and return
     end
     if @article.update(permitted_params)

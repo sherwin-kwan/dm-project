@@ -21,8 +21,8 @@ class UsersController < ApplicationController
   def send_password_reset
     # Find whether this is a legit email
     user = User.find_by(email: params[:email])
-    if @user
-      token = User.generate_reset_token
+    if user
+      token = user.generate_reset_token
       # To be finished later; sends an email with password reset tokens
     end
     redirect_to password_reset_path

@@ -8,14 +8,14 @@ RSpec.describe Person, type: :request do
     post "/users/login", params: {email: @u.email, password: @u.password}
   end
 
-  it "should let you edit your profile" do
-    patch "/admin/people/#{@p.id}", params: { person: {given_name: "New Name"}}
+  it "should let you edit your profile, using session cookie to determine who you are" do
+    patch "/admin/people", params: { person: {given_name: "New Name"}}
     expect(@p.reload.given_name).to eq("New Name")
   end
 
-  it "should not let you edit someone else's profile" do
+  it "edits should not apply to someone else's profile" do
     @p2 = FactoryBot.create(:person, given_name: "Muhaha you can't change this")
-    patch "/admin/people/#{@p2.id}", params: { person: {given_name: "New Name"}}
+    patch "/admin/people", params: { person: {given_name: "New Name"}}
     expect(@p2.reload.given_name).to eq("Muhaha you can't change this")
   end
 
