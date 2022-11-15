@@ -2,7 +2,10 @@ module Admin
   class PeopleController < ApplicationController
     def edit
       if params[:id].to_i == current_user.person&.id
-        @person = get_object
+        @person = Person.find_by(id: params[:id].to_i)
+        unless @person
+          render :error, status: 404 and return
+        end
       else
         flash[:errors] = "You are not authorized to view this page"
         redirect_to admin_dashboard_path
@@ -11,7 +14,10 @@ module Admin
 
     def update
       if params[:id].to_i == current_user.person&.id
-        @person = get_object
+        @person = Person.find_by(id: params[:id].to_i)
+        unless @person
+          render :error, status: 404 and return
+        end
         if @person.update(permitted_params)
           redirect_to admin_dashboard_path
         else
