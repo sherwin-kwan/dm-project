@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get '*path', :to => 'users#dashboard'
   end
   resources :users, only: %i(new create)
+  get "get_presigned_url", :to => 'uploads#get_presigned_url'
 
   # Password resets
   get "password_reset", :to => "sessions#password_reset"
