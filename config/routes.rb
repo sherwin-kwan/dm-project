@@ -12,6 +12,11 @@ Rails.application.routes.draw do
     get '*path', :to => 'users#dashboard'
   end
   resources :users, only: %i(new create)
+
+  # Password resets
+  get "password_reset", :to => "sessions#password_reset"
+  post "send_password_reset", :to => 'users#send_password_reset'
+
   resources :people, only: :show
   scope :users do
     get "login", :to => 'sessions#new'
