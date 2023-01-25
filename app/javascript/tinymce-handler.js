@@ -1,52 +1,23 @@
 const uploadHandler = async function (blobInfo, progress) {
+
+  // First, use the back end to generate a presigned URL
   const data = await fetch("/get_presigned_url", {
     method: "GET",
   });
   const json = await data.json();
-  return new Promise((resolve, reject) => {
-    // First, use the back end to generate a presigned URL
-    const { presigned_url } = json;
-    // Now, use the presigned URL to upload the image to AWS S3
-    const xhr = new XMLHttpRequest();
-    xhr.withCredentials = false;
-    xhr.open("PUT", presigned_url, true);
-    console.log("The XHR is open");
+  const { presigned_url } = json;
+  
+  return new Promise(async (resolve, reject) => {
 
-    xhr.upload.onprogress = (e) => {
-      progress((e.loaded / e.total) * 100);
-    };
-
-    const formData = new FormData();
-    formData.append("file", blobInfo.blob(), blobInfo.filename());
-    xhr.send(formData);
-    console.log("It's been sent!");
-
-    xhr.onload = async function () {
-      console.log("Load event");
-      if (xhr.status < 200 || xhr.status >= 300) {
-        reject({
-          message: `HTTP Error: ${xhr.status}`,
-          remove: true,
-        });
-        return;
-      }
-      if (xhr.responseText) {
-        reject({
-          message: `Error from AWS: ${xhr.responseText}`,
-          remove: true,
-        });
-        return;
-      }
-      resolve(presigned_url);
-    };
-
-    xhr.onerror = () => {
-      console.log("Error event");
+    try {
+      const { url } = await fetch(presigned_url, {method: 'PUT', body: blobInfo.blob()});
+      resolve(url.split("?")[0]) 
+    } catch (err) {
       reject({
-        message: `Image upload failed due to a XHR Transport error. Code: ${xhr.status}`,
-        remove: true,
-      });
-    };
+        message: `Image upload failed: ${err.message}`,
+        remove: true
+      })
+    }
   });
 };
 
