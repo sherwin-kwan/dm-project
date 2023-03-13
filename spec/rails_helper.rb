@@ -6,7 +6,9 @@ require_relative '../config/environment'
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
-
+require 'pry'
+require 'dotenv'
+Dotenv.load(".env.test")
 require "capybara/rails"
 require "capybara/rspec"
 
