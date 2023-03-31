@@ -81,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: dm_project_production
-  username: dm_project
+  database: railway
+  username: postgres
   password: <%= ENV["DM_PROJECT_DATABASE_PASSWORD"] %>
