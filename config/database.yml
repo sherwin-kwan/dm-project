@@ -83,4 +83,5 @@ production:
   <<: *default
   database: railway
   username: postgres
+  port: 5809
   password: <%= ENV["DM_PROJECT_DATABASE_PASSWORD"] %>
