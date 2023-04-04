@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  host: containers-us-west-85.railway.app
   database: railway
   username: postgres
   port: 5809
